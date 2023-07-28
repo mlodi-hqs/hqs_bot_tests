@@ -18,7 +18,7 @@ jobs:
       - name: Update pyproject.toml
         run: |
           pip install toml-cli
-          toml set --toml-path pyproject.toml ${{ inputs.version }}
+          toml set --toml-path pyproject.toml project.version ${{ inputs.version }}
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:

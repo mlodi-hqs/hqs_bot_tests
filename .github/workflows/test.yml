@@ -1,0 +1,36 @@
+name: test for modifying pyproject.taml
+
+on:
+  workflow_dispatch:
+    inputs:
+      new_version:
+        description: "The new package version number"
+        type: string
+
+jobs:
+  update_version:
+    runs-on: 'ubuntu-latest'
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+      - name: Update pyproject.toml
+        run: |
+          pip install toml-cli
+          toml set --toml-path pyproject.toml 0.0.2
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          commit-message: Update pyproject.toml
+          committer: GitHub <noreply@github.com>
+          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+          branch: versioning-update
+          delete-branch: true
+          title: '[Version] Update'
+          body: |
+            Updates the package:
+              - New pyproject.toml version number
+            This is an automated message.
+          labels: automated-pr
+          assignees: mlodi-hqs

@@ -3,7 +3,7 @@ name: test for modifying pyproject.taml
 on:
   workflow_dispatch:
     inputs:
-      new_version:
+      version:
         description: "The new package version number"
         type: string
 
@@ -18,7 +18,7 @@ jobs:
       - name: Update pyproject.toml
         run: |
           pip install toml-cli
-          toml set --toml-path pyproject.toml 0.0.2
+          toml set --toml-path pyproject.toml ${{ inputs.version }}
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:

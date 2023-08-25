@@ -1,0 +1,11 @@
+[workspace]
+members = [
+    "qoqo_hqs_bot_test",
+    "roqoqo_hqs_bot_test",
+]
+
+[profile.release]
+lto = "thin"
+
+[profile.bench]
+lto = "thin"

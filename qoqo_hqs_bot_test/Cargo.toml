@@ -1,0 +1,36 @@
+[package]
+name = "qoqo_hqs_bot_test"
+version = "0.0.1"
+edition = "2021"
+authors = ["HQS Quantum Simulations <info@quantumsimulations.de>"]
+rust-version = "1.56"
+categories = ["science", "simulation"]
+homepage = "https://github.com/mlodi-hqs/hqs_bot_tests"
+repository = "https://github.com/mlodi-hqs/hqs_bot_tests"
+include = [
+    "src/*",
+    "qoqo_qryd/*",
+    "README.md",
+    "pyproject.toml",
+    "Cargo.toml",
+    "LICENSE",
+]
+
+[lib]
+name = "qoqo_hqs_bot_test"
+path = "src/lib.rs"
+doctest = false
+crate-type = ["cdylib", "rlib"]
+
+[dependencies.pyo3]
+version = "0.19"
+features = ["num-complex"]
+
+[dependencies]
+qoqo = "1.6"
+
+[build-dependencies]
+pyo3-build-config = "0.19"
+
+[features]
+extension-module = ["pyo3/extension-module"]

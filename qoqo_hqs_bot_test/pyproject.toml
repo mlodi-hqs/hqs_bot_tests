@@ -1,6 +1,6 @@
 [project]
 name = "qoqo_hqs_bot_test"
-version = "0.0.1"
+version = "0.0.7"
 authors = [
     { name = "Matteo Lodi", email = "matteo.lodi@quantumsimulations.de" },
 ]
@@ -10,7 +10,7 @@ maintainers = [
 readme = "README.md"
 requires-python = ">=3.8"
 dependencies = [
-    "qoqo>=1.6",
+    "qoqo>=1.7",
 ]
 
 [project.optional-dependencies]

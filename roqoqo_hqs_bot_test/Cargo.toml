@@ -1,6 +1,6 @@
 [package]
 name = "roqoqo_hqs_bot_test"
-version = "0.0.1"
+version = "0.0.7"
 edition = "2021"
 authors = ["HQS Quantum Simulations <info@quantumsimulations.de>"]
 rust-version = "1.56"

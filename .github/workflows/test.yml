@@ -1,11 +1,16 @@
-name: test for modifying pyproject.toml
+name: Automatic Package Update
 
 on:
   workflow_dispatch:
     inputs:
-      version:
-        description: "The new package version number"
+      package_version:
+        description: "The new package version number."
         type: string
+        required: true
+      qoqo_version:
+        description: "The new qoqo version number."
+        type: string
+        require: false
 
 jobs:
   update_version:
@@ -17,23 +22,37 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: "3.9"
-      - name: Update pyproject.toml
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          default: true
+      - name: Update tomls
         run: |
-          pip install toml-cli
-          toml set --toml-path pyproject.toml project.version ${{ inputs.version }}
+          pip install git+https://github.com/mlodi-hqs/toml-cli
+          toml set --toml-path qoqo_hqs_bot_test/pyproject.toml project.version ${{ inputs.package_version }}
+          # toml update_dependency_list --toml-path qoqo_hqs_bot_test/pyproject.toml project.dependencies qoqo ${{ inputs.qoqo_version }}
+          toml set --toml-path qoqo_hqs_bot_test/Cargo.toml package.version ${{ inputs.package_version }}
+          toml set --toml-path roqoqo_hqs_bot_test/Cargo.toml package.version ${{ inputs.package_version }}
+      - name: Update DEPENDENCIES
+        run: |
+          cd qoqo_hqs_bot_test/qoqo_hqs_bot_test
+          cargo licensepull > DEPENDENCIES
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.PAT }}
-          commit-message: Update pyproject.toml
+          commit-message: automatic package update commit
           committer: GitHub <noreply@github.com>
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
           branch: versioning-update
           delete-branch: true
-          title: '[Version] Update'
+          title: 'Automatic Package Update'
           body: |
             Updates the package:
-              - New pyproject.toml version number
+              - Update tomls version number
+              - Update DEPENDENCIES file
+
             This is an automated message.
           labels: automated-pr
           assignees: mlodi-hqs

@@ -13,7 +13,7 @@ on:
         require: false
 
 jobs:
-  update_version:
+  main_job:
     runs-on: 'ubuntu-latest'
     steps:
       - uses: actions/checkout@v3
@@ -31,9 +31,11 @@ jobs:
         run: |
           pip install git+https://github.com/mlodi-hqs/toml-cli
           toml set --toml-path qoqo_hqs_bot_test/pyproject.toml project.version ${{ inputs.package_version }}
-          # toml update_dependency_list --toml-path qoqo_hqs_bot_test/pyproject.toml project.dependencies qoqo ${{ inputs.qoqo_version }}
           toml set --toml-path qoqo_hqs_bot_test/Cargo.toml package.version ${{ inputs.package_version }}
           toml set --toml-path roqoqo_hqs_bot_test/Cargo.toml package.version ${{ inputs.package_version }}
+      - name: Update qoqo dependency
+        if: ${{ inputs.qoqo_version }}
+        run: toml update_dependency_list --toml-path qoqo_hqs_bot_test/pyproject.toml project.dependencies qoqo ${{ inputs.qoqo_version }}
       - name: Update DEPENDENCIES
         run: |
           cd qoqo_hqs_bot_test/qoqo_hqs_bot_test
@@ -51,7 +53,8 @@ jobs:
           title: 'Automatic Package Update'
           body: |
             Updates the package:
-              - Update tomls version number
+              - Update tomls with new package version number
+              - Update qoqo dependency (if specified)
               - Update DEPENDENCIES file
 
             This is an automated message.

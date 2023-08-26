@@ -1,6 +1,6 @@
 [project]
 name = "qoqo_hqs_bot_test"
-version = "0.0.1"
+version = "0.0.6"
 authors = [
     { name = "Matteo Lodi", email = "matteo.lodi@quantumsimulations.de" },
 ]

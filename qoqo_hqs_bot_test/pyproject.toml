@@ -2,10 +2,10 @@
 name = "qoqo_hqs_bot_test"
 version = "0.0.1"
 authors = [
-    {name="Matteo Lodi", email="matteo.lodi@quantumsimulations.de"}
+    { name = "Matteo Lodi", email = "matteo.lodi@quantumsimulations.de" },
 ]
 maintainers = [
-    {name="Matteo Lodi", email="matteo.lodi@quantumsimulations.de"}
+    { name = "Matteo Lodi", email = "matteo.lodi@quantumsimulations.de" },
 ]
 readme = "README.md"
 requires-python = ">=3.8"
@@ -14,11 +14,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-tests = [
-  'pytest',
-  'pytest-cov',
-  'coverage'
-]
+tests = ['pytest', 'pytest-cov', 'coverage']
 dev = [
     'flake8',
     'flake8-bugbear',
@@ -37,7 +33,7 @@ docs = [
     'recommonmark',
     'myst_parser',
     'sphinx_rtd_theme',
-    'tomli'
+    'tomli',
 ]
 
 [build-system]
@@ -56,34 +52,34 @@ target-version = ["py39", "py310", "py311"]
 [tool.coverage.run]
 branch = true
 omit = ["tests/*", "*test*.py"]
-source=["qoqo_qiskit"]
+source = ["qoqo_qiskit"]
 
 [tool.coverage.paths]
 source = ["src", "**/site-packages"]
 
 [tool.ruff]
-line-length = 99  # same as black
+line-length = 99        # same as black
 target-version = "py39"
 show-fixes = true
 show-source = true
 # activate the following checks
 select = [
-    "A",  # builtins
-    "ANN",  # annotations
-    "ARG",  # unused arguments
-    "B",  # bugbear
-    "C",  # comprehensions
-    "C90",  # mccabe complexity
-    "D",  # pydocstyle
-    "E",  # pycodestyle
-    "ERA",  # remove commented out code
-    "F",  # pyflakes
-    "NPY",  # numpy
+    "A",   # builtins
+    "ANN", # annotations
+    "ARG", # unused arguments
+    "B",   # bugbear
+    "C",   # comprehensions
+    "C90", # mccabe complexity
+    "D",   # pydocstyle
+    "E",   # pycodestyle
+    "ERA", # remove commented out code
+    "F",   # pyflakes
+    "NPY", # numpy
     "PL",  # pylint
-    "RUF",  # ruff
-    "S",  # bandit
-    "TCH",  # type checking
-    "W",  # Warnings
+    "RUF", # ruff
+    "S",   # bandit
+    "TCH", # type checking
+    "W",   # Warnings
 ]
 # ignore specific violations
 ignore = [
@@ -101,10 +97,50 @@ ignore = [
 ]
 # Allow autofix for all enabled rules (when `--fix`) is provided.
 fixable = [
-    "A", "B", "C", "D", "E", "F", "G", "I", "N", "Q", "S", "T", "W",
-    "ANN", "ARG", "BLE", "COM", "DJ", "DTZ", "EM", "ERA", "EXE", "FBT",
-    "ICN", "INP", "ISC", "NPY", "PD", "PGH", "PIE", "PL", "PT", "PTH", "PYI",
-    "RET", "RSE", "RUF", "SIM", "SLF", "TCH", "TID", "TRY", "UP", "YTT"
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "I",
+    "N",
+    "Q",
+    "S",
+    "T",
+    "W",
+    "ANN",
+    "ARG",
+    "BLE",
+    "COM",
+    "DJ",
+    "DTZ",
+    "EM",
+    "ERA",
+    "EXE",
+    "FBT",
+    "ICN",
+    "INP",
+    "ISC",
+    "NPY",
+    "PD",
+    "PGH",
+    "PIE",
+    "PL",
+    "PT",
+    "PTH",
+    "PYI",
+    "RET",
+    "RSE",
+    "RUF",
+    "SIM",
+    "SLF",
+    "TCH",
+    "TID",
+    "TRY",
+    "UP",
+    "YTT",
 ]
 unfixable = []
 # exclude the following patterns from linting
@@ -115,11 +151,11 @@ exclude = [
     "old",
     "build",
     "dist",
-    "test_*"
+    "test_*",
 ]
 
 [tool.ruff.mccabe]
-max-complexity = 20  # 5 higher than sonarqube
+max-complexity = 20 # 5 higher than sonarqube
 
 [tool.ruff.pydocstyle]
 convention = "google"
@@ -128,9 +164,9 @@ convention = "google"
 "__init__.py" = ["F401"]
 
 [tool.flake8]
-max-line-length = 99  # same as black
+max-line-length = 99 # same as black
 ignore = [
-    "E203",  # Needed for compatibility with black
+    "E203",   # Needed for compatibility with black
     "D400",
     "D401",
     "W503",
@@ -153,6 +189,4 @@ exclude = [
     "test_*",
 ]
 docstring-convention = "google"
-per-file-ignores = [
-    "__init__.py:F401",
-]
+per-file-ignores = ["__init__.py:F401"]

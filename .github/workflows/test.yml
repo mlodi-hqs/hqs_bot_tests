@@ -27,7 +27,6 @@ jobs:
           profile: minimal
           toolchain: stable
           default: true
-          components: cargo-licensepull
       - name: Update tomls
         run: |
           pip install git+https://github.com/mlodi-hqs/toml-cli
@@ -40,6 +39,7 @@ jobs:
       - name: Update DEPENDENCIES
         run: |
           cd qoqo_hqs_bot_test/qoqo_hqs_bot_test
+          cargo install cargo-licensepull
           cargo licensepull > DEPENDENCIES
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5

@@ -1081,7 +1081,7 @@ dependencies = [
 
 [[package]]
 name = "qoqo_hqs_bot_test"
-version = "0.0.1"
+version = "0.0.2"
 dependencies = [
  "pyo3",
  "pyo3-build-config",
@@ -1253,7 +1253,7 @@ dependencies = [
 
 [[package]]
 name = "roqoqo_hqs_bot_test"
-version = "0.0.1"
+version = "0.0.2"
 dependencies = [
  "qoqo",
 ]
